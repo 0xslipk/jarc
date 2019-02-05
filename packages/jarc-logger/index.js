@@ -23,8 +23,6 @@ const json2tags = (tags = {}) => Object.keys(tags).map((key) => {
 const addAvailableMethod = (name, client, level, msg, tags) => {
   const result = tags || {};
 
-  // console.log(client);
-
   if (name) {
     result.name = name;
   }
@@ -41,6 +39,7 @@ function Logger(name) {
   this.client = winston.createLogger({
     level: LOG_LEVEL || 'info',
     format: winston.format.combine(
+      winston.format.colorize(),
       winston.format.timestamp(),
       winston.format.printf(info => `${info.timestamp} - ${info.message} - ${info.tags}`),
     ),
@@ -100,7 +99,14 @@ Logger.prototype.silly = function (msg, tags = {}) {
 };
 /* eslint-enable func-names */
 
-/**
- * Expose Logger
- */
-module.exports = name => new Logger(name);
+const logger = new Logger('service');
+
+logger.info('get list', {
+  a: 1,
+  b: 2,
+});
+
+// /**
+//  * Expose Logger
+//  */
+// module.exports = name => new Logger(name);

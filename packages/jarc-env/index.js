@@ -14,7 +14,7 @@ const env = Object.assign({}, variables, {
   DEVELOPMENT: variables.NODE_ENV === 'development',
   TEST: variables.NODE_ENV === 'test',
   SERVER_HOST: variables.SERVER_HOST || 'localhost',
-  SERVER_PORT: variables.PORT || 8080,
+  SERVER_PORT: variables.SERVER_PORT || 8080,
   LOG_LEVEL: variables.LOG_LEVEL || 'debug',
 });
 
